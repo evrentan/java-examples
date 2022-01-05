@@ -2,7 +2,7 @@
 This is a sample basic project to demostrate removeIf() & removeAll() methods of Java Collection Interface.
 
 ## removeIf()
-The removeIf() method removes the elements of this queue that satisfies the given predicate filter.
+The removeIf() method removes the elements of the specific collection that satisfies the given predicate filter.
 
 Syntax:
 
@@ -11,7 +11,7 @@ public boolean removeIf (Predicate<?  super E>  filter);
 ```
 
 ## removeAll()
-The removeAll() method only removes those elements of the Collection that are contained in the specified collection.
+The removeAll() method only removes the elements of the specified collection that are contained in the provided collection.
 
 Syntax:
 
