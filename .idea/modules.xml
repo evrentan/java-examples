@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/java-builder-design-pattern-example/java-builder-design-pattern-example.iml" filepath="$PROJECT_DIR$/java-builder-design-pattern-example/java-builder-design-pattern-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/java-examples.iml" filepath="$PROJECT_DIR$/.idea/java-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-file-operations-example/java-file-operations-example.iml" filepath="$PROJECT_DIR$/java-file-operations-example/java-file-operations-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-record-example/java-record-example.iml" filepath="$PROJECT_DIR$/java-record-example/java-record-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-reflection-example/java-reflection-example.iml" filepath="$PROJECT_DIR$/java-reflection-example/java-reflection-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-string-replaceall-regex-example/java-string-replaceall-regex-example.iml" filepath="$PROJECT_DIR$/java-string-replaceall-regex-example/java-string-replaceall-regex-example.iml" />
+    </modules>
+  </component>
+</project>
