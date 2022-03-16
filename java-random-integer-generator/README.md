@@ -1,5 +1,5 @@
-# java-string-replaceall-regex-example
-This is a sample basic project to demostrate replaceAll() method for Strings with Regex pattern.
+# java-file-operations-example
+This is a basic Java project to demonstrate how to get a random integer within Java.
 
 ## How to Contribute
 
