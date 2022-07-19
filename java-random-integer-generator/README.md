@@ -1,4 +1,4 @@
-# java-file-operations-example
+# java-random-integer-generator
 This is a basic Java project to demonstrate how to get a random integer within Java.
 
 ## How to Contribute

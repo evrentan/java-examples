@@ -1,5 +1,5 @@
 # java-string-replaceall-regex-example
-This is a sample basic project to demostrate replaceAll() method for Strings with Regex pattern.
+This is a sample basic project to demonstrate replaceAll() method for Strings with Regex pattern.
 
 ## How to Contribute
 

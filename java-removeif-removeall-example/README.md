@@ -1,5 +1,5 @@
 # java-removeif-removeall-example
-This is a sample basic project to demostrate removeIf() & removeAll() methods of Java Collection Interface.
+This is a sample basic project to demonstrate removeIf() & removeAll() methods of Java Collection Interface.
 
 ## removeIf()
 The removeIf() method removes the elements of the specific collection that satisfies the given predicate filter.

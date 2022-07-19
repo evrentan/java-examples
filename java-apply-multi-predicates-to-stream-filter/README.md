@@ -1,4 +1,4 @@
-# java-file-operations-example
+# java-apply-multi-predicate-to-stream-filter
 This is a basic Java project to demonstrate how to handle multiple predicates to Java Stream API's filter method.
 
 ## How to Contribute
