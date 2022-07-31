@@ -1,5 +1,5 @@
-# java-converting-arraylist-to-hashset
-This is a basic Java project to demonstrate how to convert ArrayList to Set with different approaches.
+# java-converting-list-to-hashset
+This is a basic Java project to demonstrate how to convert List to Set with different approaches.
 
 ## How to Contribute
 
