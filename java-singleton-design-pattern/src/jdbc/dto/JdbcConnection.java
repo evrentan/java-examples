@@ -39,9 +39,10 @@ public class JdbcConnection extends BaseClass {
     try {
       connection = getConnection();
       assert connection != null;
-      preparedStatement = connection.prepareStatement("select * from user where userName=?");
+      preparedStatement = connection.prepareStatement("select * from apl_user where userName=?");
       preparedStatement.setString(1, userName);
       user = (User) preparedStatement.executeQuery();
+      System.out.println(user);
     } catch (SQLException exception) {
       logger.log(Level.SEVERE, exception.getMessage());
     } finally {
@@ -62,7 +63,7 @@ public class JdbcConnection extends BaseClass {
       if (Objects.isNull(getUser(user.getUserName()))) {
         connection = getConnection();
         assert connection != null;
-        preparedStatement = connection.prepareStatement("insert into user(userName, password) values (?, ?)");
+        preparedStatement = connection.prepareStatement("insert into apl_user(userName, password) values (?, ?)");
         preparedStatement.setString(1, user.getUserName());
         preparedStatement.setString(2, user.getPassword());
         return preparedStatement.execute();
