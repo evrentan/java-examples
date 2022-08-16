@@ -7,3 +7,6 @@ For the contributor covenant to this project, please check the Code of Conduct f
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
+```
+docker run --name singletonDesignPatternExample -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=singletonDesignPatternExample -d postgres
+```
