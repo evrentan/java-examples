@@ -43,19 +43,29 @@ public class JdbcConnection extends BaseClass {
 
     ResultSet resultSet = statement.executeQuery(getUserByUserNameSqlStatement);
     if (resultSet.next()) {
-        return new User(resultSet.getString("username"), resultSet.getString("password"));
+      return new User(resultSet.getString("username"), resultSet.getString("password"));
     }
 
     return null;
   }
 
-  public Boolean insertUser(User user) throws SQLException {
+  public void insertUser(User user) throws SQLException {
     final String insertUserSqlStatement = String.format("insert into public.apl_user(username, password) values ('%s', '%s')", user.getUsername(), user.getPassword());
 
-    if (Objects.isNull(getUser(user.getUsername())))
-      return statement.execute(insertUserSqlStatement);
-
+    if (Objects.isNull(getUser(user.getUsername()))) {
+      statement.execute(insertUserSqlStatement);
+      System.out.println("User is successfully inserted !!!");
+    } else
       System.out.println(String.format("%s userName already exists !!!", user.getUsername()));
-      return false;
-    }
+  }
+
+  public void deleteUser(String username) throws SQLException {
+    final String deleteUserByUsernameSqlStatement = String.format("delete from public.apl_user where username = '%s'", username);
+
+    if (Objects.nonNull(getUser(username))) {
+      statement.execute(deleteUserByUsernameSqlStatement);
+      System.out.println("User is successfully deleted !!!");
+    } else
+      System.out.println(String.format("%s userName does not exists !!!", username));
+  }
 }

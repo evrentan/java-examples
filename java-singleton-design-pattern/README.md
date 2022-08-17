@@ -26,7 +26,7 @@ docker run -p 5050:80 --name pgAdmin -e "PGADMIN_DEFAULT_EMAIL=admin@admin.com" 
 ```
 
 You can reach PgAdmin from http://localhost:5050 with the above credentials. Then, you can set up your database as you can see from the below screenshot by registering a server via PgAdmin.
-Also, set connection timeout from Advanced tab.
+Also, set connection timeout from Advanced tab if required.
 
 ![pgAdminServerRegistration.png](assets/img/pgAdminServerRegistration.png)
 
