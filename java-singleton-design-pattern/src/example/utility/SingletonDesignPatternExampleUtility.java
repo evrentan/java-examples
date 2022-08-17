@@ -7,6 +7,11 @@ import java.util.Objects;
 
 public class SingletonDesignPatternExampleUtility {
 
+  /**
+   * Run Singleton Design Example
+   *
+   * @author <a href="https://github.com/evrentan">Evren Tan</a>
+   */
   public void runExample() {
     EagerInstantiationOfSingletonClass firstEagerInstantiationOfSingletonClass = EagerInstantiationOfSingletonClass.getInstance();
     EagerInstantiationOfSingletonClass secondEagerInstantiationOfSingletonClass = EagerInstantiationOfSingletonClass.getInstance();

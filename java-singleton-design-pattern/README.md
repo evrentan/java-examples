@@ -1,6 +1,10 @@
 # java-singleton-design-pattern
 This is a basic Java project to demonstrate basically how to implement Singleton Design Pattern in Java.
 
+Singleton Design Pattern implementation is explained with two examples. One is plain Singleton Implementation of an object by two ways, eager & lazy instantiation and the other example is from a daily life example which is the implementation of JDBC connection to PostgreSQL DB.
+
+Also, I try to explain how to set up PostgreSQL DB as a container in your local environment below with the required information to run the second example.
+
 ## How to Contribute
 
 For the contributor covenant to this project, please check the Code of Conduct file.

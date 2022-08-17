@@ -13,6 +13,12 @@ import java.util.logging.Level;
 
 public class InitializeUtility extends BaseClass {
 
+  /**
+   * Initialize the first interaction of the application from command prompt
+   * @return int that is the choice of the end user. 1 or 2
+   *
+   * @author <a href="https://github.com/evrentan">Evren Tan</a>
+   */
   public static int initialize() {
     System.out.println("***************");
     System.out.println("This is a sample application to see how Singleton Design Pattern is implemented in Java !");
@@ -23,6 +29,11 @@ public class InitializeUtility extends BaseClass {
     return scanner.nextInt();
   }
 
+  /**
+   * Run Singleton Design Pattern Example that is the first selection from the end user
+   *
+   * @author <a href="https://github.com/evrentan">Evren Tan</a>
+   */
   public static void runSingletonDesignPatternExample() {
     try {
       Object singletonDesignExampleClass = SingletonDesignPatternExampleUtility.class.getDeclaredConstructor().newInstance();
@@ -33,6 +44,12 @@ public class InitializeUtility extends BaseClass {
     }
   }
 
+  /**
+   * Run JDBC Connection Example that is the second selection from the end user
+   * @throws SQLException exception can be thrown during DB transaction
+   *
+   * @author <a href="https://github.com/evrentan">Evren Tan</a>
+   */
   public static void runJdbcConnectionExample() throws SQLException {
     System.out.println("***************");
     System.out.println("Select what you want to do in the database, insert a new user or select a user by username or delete a user by username !");
@@ -62,6 +79,14 @@ public class InitializeUtility extends BaseClass {
     scanner.close();
   }
 
+  /**
+   * Get User Operation from DB by username
+   * @param scanner Scanner input from command prompt
+   * @param jdbcConnection singleton created JDBC connection. Please check {@link JdbcConnection} for more details
+   * @throws SQLException exception can be thrown during DB transaction
+   *
+   * @author <a href="https://github.com/evrentan">Evren Tan</a>
+   */
   private static void getUserOperation(Scanner scanner, JdbcConnection jdbcConnection) throws SQLException {
     System.out.print("Enter the username that you want to search: ");
     String username = scanner.next();
@@ -69,6 +94,14 @@ public class InitializeUtility extends BaseClass {
     System.out.println(String.format("The username is %s and the password is %s !!!", user.getUsername(), user.getPassword()));
   }
 
+  /**
+   * Insert User Operation to DB
+   * @param scanner Scanner input from command prompt
+   * @param jdbcConnection singleton created JDBC connection. Please check {@link JdbcConnection} for more details
+   * @throws SQLException exception can be thrown during DB transaction
+   *
+   * @author <a href="https://github.com/evrentan">Evren Tan</a>
+   */
   private static void insertUserMethod(Scanner scanner, JdbcConnection jdbcConnection) throws SQLException {
     System.out.print("Enter the username that you want to create: ");
     String username = scanner.next();
@@ -77,6 +110,14 @@ public class InitializeUtility extends BaseClass {
     jdbcConnection.insertUser(new User(username, password));
   }
 
+  /**
+   * Delete User Operation from DB by username
+   * @param scanner Scanner input from command prompt
+   * @param jdbcConnection singleton created JDBC connection. Please check {@link JdbcConnection} for more details
+   * @throws SQLException exception can be thrown during DB transaction
+   *
+   * @author <a href="https://github.com/evrentan">Evren Tan</a>
+   */
   private static void deleteUserOperation(Scanner scanner, JdbcConnection jdbcConnection) throws SQLException {
     System.out.print("Enter the username that you want to delete: ");
     String username = scanner.next();
