@@ -29,7 +29,7 @@ public class JdbcConnection extends BaseClass {
     return null;
   }
 
-  public User getUser(String userName) throws SQLException {
+  public User getUser(String username) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     User user = null;
@@ -39,7 +39,7 @@ public class JdbcConnection extends BaseClass {
       connection = getConnection();
       assert connection != null;
       preparedStatement = connection.prepareStatement(getUserByUserNameSqlStatement);
-      preparedStatement.setString(1, userName);
+      preparedStatement.setString(1, username);
       ResultSet resultSet = preparedStatement.executeQuery();
       while (resultSet.next())
         System.out.println(resultSet);
