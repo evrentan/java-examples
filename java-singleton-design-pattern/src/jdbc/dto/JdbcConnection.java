@@ -2,10 +2,7 @@ package jdbc.dto;
 
 import dto.BaseClass;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -23,6 +20,7 @@ public class JdbcConnection extends BaseClass {
 
   private static Connection getConnection() {
     try(Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/singletonDesignPatternExample", "admin", "admin")) {
+      System.out.println("Successfully connected to the PostgreSQL server !!!");
       return connection;
     } catch (SQLException exception) {
       logger.log(Level.SEVERE, exception.getMessage());
@@ -35,14 +33,16 @@ public class JdbcConnection extends BaseClass {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     User user = null;
+    final String getUserByUserNameSqlStatement = "select * from public.apl_user where username = ?";
 
     try {
       connection = getConnection();
       assert connection != null;
-      preparedStatement = connection.prepareStatement("select * from apl_user where userName=?");
+      preparedStatement = connection.prepareStatement(getUserByUserNameSqlStatement);
       preparedStatement.setString(1, userName);
-      user = (User) preparedStatement.executeQuery();
-      System.out.println(user);
+      ResultSet resultSet = preparedStatement.executeQuery();
+      while (resultSet.next())
+        System.out.println(resultSet);
     } catch (SQLException exception) {
       logger.log(Level.SEVERE, exception.getMessage());
     } finally {
@@ -60,16 +60,16 @@ public class JdbcConnection extends BaseClass {
     PreparedStatement preparedStatement = null;
     try {
 
-      if (Objects.isNull(getUser(user.getUserName()))) {
+      if (Objects.isNull(getUser(user.getUsername()))) {
         connection = getConnection();
         assert connection != null;
-        preparedStatement = connection.prepareStatement("insert into apl_user(userName, password) values (?, ?)");
-        preparedStatement.setString(1, user.getUserName());
+        preparedStatement = connection.prepareStatement("insert into public.apl_user(username, password) values (?, ?)");
+        preparedStatement.setString(1, user.getUsername());
         preparedStatement.setString(2, user.getPassword());
         return preparedStatement.execute();
       }
 
-      System.out.println(String.format("%s userName already exists !!!", user.getUserName()));
+      System.out.println(String.format("%s userName already exists !!!", user.getUsername()));
       return false;
     } catch (SQLException exception) {
       logger.log(Level.SEVERE, exception.getMessage());
