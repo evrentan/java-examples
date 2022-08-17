@@ -1,6 +1,6 @@
 package example.utility;
 
-import example.dto.EarlyInstantiationOfSingletonClass;
+import example.dto.EagerInstantiationOfSingletonClass;
 import example.dto.LazyInstantiationOfSingletonClass;
 
 import java.util.Objects;
@@ -8,17 +8,17 @@ import java.util.Objects;
 public class SingletonDesignPatternExampleUtility {
 
   public void runExample() {
-    EarlyInstantiationOfSingletonClass firstEarlyInstantiationOfSingletonClass = EarlyInstantiationOfSingletonClass.getInstance();
-    EarlyInstantiationOfSingletonClass secondEarlyInstantiationOfSingletonClass = EarlyInstantiationOfSingletonClass.getInstance();
+    EagerInstantiationOfSingletonClass firstEagerInstantiationOfSingletonClass = EagerInstantiationOfSingletonClass.getInstance();
+    EagerInstantiationOfSingletonClass secondEagerInstantiationOfSingletonClass = EagerInstantiationOfSingletonClass.getInstance();
 
     LazyInstantiationOfSingletonClass firstLazyInstantiationOfSingletonClass = LazyInstantiationOfSingletonClass.getInstance();
     LazyInstantiationOfSingletonClass secondLazyInstantiationOfSingletonClass = LazyInstantiationOfSingletonClass.getInstance();
 
     System.out.println(
-        String.format("Are %s and %s equal as they are early instantiated ? %s"
-            , firstEarlyInstantiationOfSingletonClass.toString()
-            , secondEarlyInstantiationOfSingletonClass.toString()
-            , Objects.equals(firstEarlyInstantiationOfSingletonClass, secondEarlyInstantiationOfSingletonClass)
+        String.format("Are %s and %s equal as they are eager instantiated ? %s"
+            , firstEagerInstantiationOfSingletonClass.toString()
+            , secondEagerInstantiationOfSingletonClass.toString()
+            , Objects.equals(firstEagerInstantiationOfSingletonClass, secondEagerInstantiationOfSingletonClass)
         )
     );
 
