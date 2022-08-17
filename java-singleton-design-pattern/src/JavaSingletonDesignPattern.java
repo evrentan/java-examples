@@ -11,7 +11,8 @@ public class JavaSingletonDesignPattern {
       InitializeUtility.runSingletonDesignPatternExample();
     else {
       JdbcConnection jdbcConnection = JdbcConnection.getInstance();
-      jdbcConnection.getUser("asd");
+      System.out.println(jdbcConnection.getUser("asd").getUsername());
+      //jdbcConnection.insertUser(new User("asd", "asd"));
     }
   }
 }

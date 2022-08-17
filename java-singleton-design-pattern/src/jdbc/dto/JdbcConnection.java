@@ -8,77 +8,54 @@ import java.util.logging.Level;
 
 public class JdbcConnection extends BaseClass {
   private static JdbcConnection jdbcConnection;
+  private Connection connection;
+  private Statement statement;
+  private static final String CONNECTION_URL = "jdbc:postgresql://localhost:5432/singletonDesignPatternExample";
+  private static final String CONNECTION_USERNAME = "admin";
+  private static final String CONNECTION_PASSWORD = "admin";
 
-  private JdbcConnection(){}
+  private JdbcConnection() throws SQLException {
+    try {
+      connection = DriverManager.getConnection(CONNECTION_URL, CONNECTION_USERNAME, CONNECTION_PASSWORD);
+      statement = connection.createStatement();
+    } catch (SQLException exception) {
+      logger.log(Level.SEVERE, exception.getMessage());
+    } finally {
+      if (Objects.isNull(statement)) {
+        assert connection != null;
+        connection.close();
+      }
+    }
+  }
 
   public static JdbcConnection getInstance() {
-    if (Objects.isNull(jdbcConnection))
-      jdbcConnection = new JdbcConnection();
-
+    try {
+      if (Objects.isNull(jdbcConnection))
+        jdbcConnection = new JdbcConnection();
+    } catch (SQLException exception) {
+      logger.log(Level.SEVERE, exception.getMessage());
+    }
     return jdbcConnection;
   }
 
-  private static Connection getConnection() {
-    try(Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/singletonDesignPatternExample", "admin", "admin")) {
-      System.out.println("Successfully connected to the PostgreSQL server !!!");
-      return connection;
-    } catch (SQLException exception) {
-      logger.log(Level.SEVERE, exception.getMessage());
+  public User getUser(String username) throws SQLException {
+    final String getUserByUserNameSqlStatement = String.format("select * from public.apl_user where username = '%s'", username);
+
+    ResultSet resultSet = statement.executeQuery(getUserByUserNameSqlStatement);
+    if (resultSet.next()) {
+        return new User(resultSet.getString("username"), resultSet.getString("password"));
     }
 
     return null;
   }
 
-  public User getUser(String username) throws SQLException {
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    User user = null;
-    final String getUserByUserNameSqlStatement = "select * from public.apl_user where username = ?";
-
-    try {
-      connection = getConnection();
-      assert connection != null;
-      preparedStatement = connection.prepareStatement(getUserByUserNameSqlStatement);
-      preparedStatement.setString(1, username);
-      ResultSet resultSet = preparedStatement.executeQuery();
-      while (resultSet.next())
-        System.out.println(resultSet);
-    } catch (SQLException exception) {
-      logger.log(Level.SEVERE, exception.getMessage());
-    } finally {
-      if (Objects.nonNull(preparedStatement))
-        preparedStatement.close();
-      if (Objects.nonNull(connection))
-        connection.close();
-    }
-
-    return user;
-  }
-
   public Boolean insertUser(User user) throws SQLException {
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    try {
+    final String insertUserSqlStatement = String.format("insert into public.apl_user(username, password) values ('%s', '%s')", user.getUsername(), user.getPassword());
 
-      if (Objects.isNull(getUser(user.getUsername()))) {
-        connection = getConnection();
-        assert connection != null;
-        preparedStatement = connection.prepareStatement("insert into public.apl_user(username, password) values (?, ?)");
-        preparedStatement.setString(1, user.getUsername());
-        preparedStatement.setString(2, user.getPassword());
-        return preparedStatement.execute();
-      }
+    if (Objects.isNull(getUser(user.getUsername())))
+      return statement.execute(insertUserSqlStatement);
 
       System.out.println(String.format("%s userName already exists !!!", user.getUsername()));
       return false;
-    } catch (SQLException exception) {
-      logger.log(Level.SEVERE, exception.getMessage());
-      return false;
-    } finally {
-      if (Objects.nonNull(preparedStatement))
-        preparedStatement.close();
-      if (Objects.nonNull(connection))
-        connection.close();
     }
-  }
 }
