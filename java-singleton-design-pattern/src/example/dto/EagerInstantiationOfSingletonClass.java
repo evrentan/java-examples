@@ -5,7 +5,7 @@ import java.time.LocalTime;
 public class EagerInstantiationOfSingletonClass {
 
   /**
-   * Object that provides the eager instantiation of the class while load time and as it is static, it will be loaded once
+   * Attribute that provides the eager instantiation of the class while load time and as it is static, it will be loaded once
    */
   private static EagerInstantiationOfSingletonClass eagerInstantiationOfSingletonClass = new EagerInstantiationOfSingletonClass();
 
