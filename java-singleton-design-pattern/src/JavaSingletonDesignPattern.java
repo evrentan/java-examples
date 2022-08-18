@@ -8,7 +8,7 @@ public class JavaSingletonDesignPattern {
     int choice = InitializeUtility.initialize();
     switch (choice) {
       case 1 -> InitializeUtility.runSingletonDesignPatternExample();
-      case 2 -> InitializeUtility.runJdbcConnectionExample();
+      case 2 -> InitializeUtility.runJDBCConnectionExample();
       default -> System.out.println("Not a valid option !!!");
     }
   }

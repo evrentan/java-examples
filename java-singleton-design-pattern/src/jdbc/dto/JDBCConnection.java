@@ -6,8 +6,8 @@ import java.sql.*;
 import java.util.Objects;
 import java.util.logging.Level;
 
-public class JdbcConnection extends BaseClass {
-  private static JdbcConnection jdbcConnection;
+public class JDBCConnection extends BaseClass {
+  private static JDBCConnection jdbcConnection;
   private Connection connection;
   private Statement statement;
   private static final String CONNECTION_URL = "jdbc:postgresql://localhost:5432/singletonDesignPatternExample";
@@ -20,7 +20,7 @@ public class JdbcConnection extends BaseClass {
    *
    * @author <a href="https://github.com/evrentan">Evren Tan</a>
    */
-  private JdbcConnection() throws SQLException {
+  private JDBCConnection() throws SQLException {
     try {
       connection = DriverManager.getConnection(CONNECTION_URL, CONNECTION_USERNAME, CONNECTION_PASSWORD);
       statement = connection.createStatement();
@@ -35,15 +35,15 @@ public class JdbcConnection extends BaseClass {
   }
 
   /**
-   * Create the instance of {@link JdbcConnection} object if it is not created yet and guarantee that there is only one single instance is created for this class.
-   * @return JdbcConnection created single instance
+   * Create the instance of {@link JDBCConnection} object if it is not created yet and guarantee that there is only one single instance is created for this class.
+   * @return JDBCConnection created single instance
    *
    * @author <a href="https://github.com/evrentan">Evren Tan</a>
    */
-  public static JdbcConnection getInstance() {
+  public static JDBCConnection getInstance() {
     try {
       if (Objects.isNull(jdbcConnection))
-        jdbcConnection = new JdbcConnection();
+        jdbcConnection = new JDBCConnection();
     } catch (SQLException exception) {
       logger.log(Level.SEVERE, exception.getMessage());
     }
