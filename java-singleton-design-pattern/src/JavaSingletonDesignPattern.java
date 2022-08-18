@@ -6,10 +6,10 @@ public class JavaSingletonDesignPattern {
 
   public static void main(String[] args) throws SQLException {
     int choice = InitializeUtility.initialize();
-    if (choice == 1)
-      InitializeUtility.runSingletonDesignPatternExample();
-    else {
-      InitializeUtility.runJdbcConnectionExample();
+    switch (choice) {
+      case 1 -> InitializeUtility.runSingletonDesignPatternExample();
+      case 2 -> InitializeUtility.runJdbcConnectionExample();
+      default -> System.out.println("Not a valid option !!!");
     }
   }
 }

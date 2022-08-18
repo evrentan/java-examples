@@ -8,6 +8,7 @@ import jdbc.dto.User;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.logging.Level;
 
@@ -51,32 +52,36 @@ public class InitializeUtility extends BaseClass {
    * @author <a href="https://github.com/evrentan">Evren Tan</a>
    */
   public static void runJdbcConnectionExample() throws SQLException {
+
+
+    JdbcConnection jdbcConnection = JdbcConnection.getInstance();
+
+    while (true) {
+      Scanner scanner = getUserChoice();
+      int choice = scanner.nextInt();
+      switch (choice) {
+        case 1 -> getUserOperation(scanner, jdbcConnection);
+        case 2 -> insertUserMethod(scanner, jdbcConnection);
+        case 3 -> deleteUserOperation(scanner, jdbcConnection);
+        case 4 -> {
+          System.out.println("Hope it is an clear example to implement Singleton Design Pattern in Java !!!");
+          scanner.close();
+          return;
+        }
+        default -> System.out.print("Not a valid choice !!!");
+      }
+    }
+
+  }
+
+  private static Scanner getUserChoice() {
     System.out.println("***************");
     System.out.println("Select what you want to do in the database, insert a new user or select a user by username or delete a user by username !");
     System.out.println("1. Get a User by Username");
     System.out.println("2. Insert a New User");
     System.out.println("3. Delete a User by Username");
-    Scanner scanner = new Scanner(System.in);
-    int choice = scanner.nextInt();
-
-    JdbcConnection jdbcConnection = JdbcConnection.getInstance();
-
-    switch (choice) {
-      case 1: {
-        getUserOperation(scanner, jdbcConnection);
-      } break;
-      case 2: {
-        insertUserMethod(scanner, jdbcConnection);
-      } break;
-      case 3: {
-        deleteUserOperation(scanner, jdbcConnection);
-      } break;
-      default: {
-        System.out.print("Not a valid option !!!");
-      }
-    }
-
-    scanner.close();
+    System.out.println("4. Exit");
+    return new Scanner(System.in);
   }
 
   /**
@@ -91,7 +96,10 @@ public class InitializeUtility extends BaseClass {
     System.out.print("Enter the username that you want to search: ");
     String username = scanner.next();
     User user = jdbcConnection.getUser(username);
-    System.out.println(String.format("The username is %s and the password is %s !!!", user.getUsername(), user.getPassword()));
+    if (Objects.nonNull(user))
+      System.out.println(String.format("The username is %s and the password is %s !!!", user.getUsername(), user.getPassword()));
+    else
+      System.out.println(String.format("There is no user with username, %s !!!", username));
   }
 
   /**
