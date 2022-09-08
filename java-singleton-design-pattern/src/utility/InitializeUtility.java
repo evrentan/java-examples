@@ -1,6 +1,6 @@
 package utility;
 
-import dto.BaseClass;
+import dto.AbstractBaseClass;
 import example.utility.SingletonDesignPatternExampleUtility;
 import jdbc.utility.JDBCConnectionUtility;
 
@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 import java.util.Scanner;
 import java.util.logging.Level;
 
-public class InitializeUtility extends BaseClass {
+public class InitializeUtility extends AbstractBaseClass {
 
   /**
    * Initialize the first interaction of the application from command prompt

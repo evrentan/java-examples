@@ -1,12 +1,12 @@
 package jdbc.dto;
 
-import dto.BaseClass;
+import dto.AbstractBaseClass;
 
 import java.sql.*;
 import java.util.Objects;
 import java.util.logging.Level;
 
-public class JDBCConnection extends BaseClass {
+public class JDBCConnection extends AbstractBaseClass {
   private static JDBCConnection jdbcConnection;
   private Connection connection;
   private Statement statement;
