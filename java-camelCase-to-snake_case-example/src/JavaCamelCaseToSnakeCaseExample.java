@@ -14,9 +14,9 @@ public class JavaCamelCaseToSnakeCaseExample {
   }
 
   public String camelToUnderscore(String input) {
-    if (input == null) {
+    if (input.isBlank())
       return "";
-    }
+
     String regex = "([a-z])([A-Z])";
     String replacement = "$1_$2";
     String result = input.replaceAll(regex, replacement).toLowerCase();
