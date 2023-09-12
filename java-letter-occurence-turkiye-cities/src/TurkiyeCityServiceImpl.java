@@ -10,13 +10,12 @@ import java.util.NoSuchElementException;
 
 public class TurkiyeCityServiceImpl implements TurkiyeCityService {
 
-    private static final String TURKEY_CITIES_URL = "https://turkiyeapi.cyclic.app/api/v1/provinces?fields=name";
 
     @Override
     public List<String> getTurkeyCities() throws NoSuchElementException, IOException, InterruptedException {
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(TURKEY_CITIES_URL))
+                .uri(URI.create(Constants.TURKEY_CITIES_URI))
                 .build();
 
         HttpResponse<String> httpResponse = HttpClient.newHttpClient().send(httpRequest, HttpResponse.BodyHandlers.ofString());
