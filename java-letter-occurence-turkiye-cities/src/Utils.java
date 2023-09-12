@@ -4,7 +4,7 @@ import java.util.Locale;
 
 public class Utils {
 
-    public static void printLetterOccurence(List<String> cities) {
+    public static void printLetterOccurrence(List<String> cities) {
         HashMap<String, Integer> letterOccurrenceMap = new HashMap<>();
 
         for (String city : cities) {
